@@ -1,0 +1,45 @@
+body {
+    background-image: url(hotel2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.card {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  margin: 20px;
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+}
+
+.labelColumn {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.inputColumn {
+  padding-left: 10px;
+}
+.menu-submenu {
+    margin-left: 20px;
+}
+
+.footer{
+    background-color: #333;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+}
+ <style>
+            /* CSS para o rodapé... */
+
+            .carousel-container {
+                max-width: 600px;
+                margin: 0 auto;
+}
