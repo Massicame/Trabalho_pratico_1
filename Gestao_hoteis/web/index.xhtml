@@ -4,41 +4,113 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-
-    <h:head>
+    
+ <h:head>
         <title>Hotel Management</title>
+        <link rel="stylesheet" type="text/css" href="estilo.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+
     </h:head>
     <h:body>
-   Gestao de Hotel
-   <h:form>
-        <p:panel header="Nova Reserva">
-            <p:outputLabel for="nome" value="Nome:" />
-            <p:inputText id="nome" value="#{reservasBean.nome}" />
+        
+<h:form>
+    <p:menubar>
+        <img src="Logo-azul.png" class="logo" />
 
-            <p:outputLabel for="data" value="Data:" />
-            <p:calendar id="data" value="#{reservasBean.data}" showOn="button" />
+        <p:submenu label="Menu" icon="pi pi-fw pi-file">
+            
+            <p:submenu label="Usuários">
+            <p:menuitem value="Cadastrar" icon="pi pi-fw pi-plus" onclick="PF('cadastroDialog').show();" /> />
+            <p:menuitem value="Atualizar" icon="pi pi-fw pi-pencil" onclick="PF('excluirDialog').show();" />
+         <p:menuitem value="Excluir" icon="pi pi-fw pi-trash"  />
+          </p:submenu>
+      
+                
+                <p:menuitem value="Hotéis" icon="pi pi-fw pi-home" />
+            
+            <p:menuitem value="Pesquisar Hotéis" icon="pi pi-fw pi-search" />
+            <p:menuitem value="Gerenciar Hotéis" icon="pi pi-fw pi-cog" />
 
-            <p:commandButton value="Reservar" action="#{reservasBean.reservar}" update="reservasTable" />
-        </p:panel>
-        <p:dataTable id="reservasTable" var="reserva" value="#{reservasBean.reservas}">
-            <p:column headerText="Nome">
-                #{reserva.nome}
-            </p:column>
-            <p:column headerText="Data">
-                #{reserva.data}
-            </p:column>
-        </p:dataTable>
-    </h:form>
+        </p:submenu>
+        <p:submenu label="Contacto">
+            <p:menuitem value="Contacto da agencia" />
+        </p:submenu>
+
+        <p:submenu label="Apoio e Informações">
+            <p:menuitem value="info" icon="pi pi-fw pi-search" />
+        </p:submenu>
+
+        <f:facet name="options">
+            <div class="ui-input-icon-left mr-2">
+                <i class="pi pi-fw pi-search" />
+                <p:inputText placeholder="Pesquisar" />
+            </div>
+            <p:commandButton value="Iniciar Sessão" icon="pi pi-fw pi-sign-in" styleClass="ui-button-info" />
+            <p:commandButton value="Criar Conta" icon="pi pi-fw pi-user-plus" styleClass="ui-button-success" />
+        </f:facet>
+    </p:menubar>
+</h:form>
+
+<p:dialog header="Cadastro de Usuários" widgetVar="cadastroDialog" modal="true" resizable="false">
+    <h:form>
+        <p:messages id="messages" />
+
+        <p:panelGrid columns="2" columnClasses="labelColumn,inputColumn">
+            <p:outputLabel for="nome" value="Nome" />
+            <p:inputText id="nome" value="#{usuarioBean.usuario.nome}" />
+
+            <p:outputLabel for="idade" value="Idade" />
+            <p:inputText id="idade" value="#{usuarioBean.usuario.idade}" />
+
+            <p:outputLabel for="morada" value="Morada" />
+            <p:inputText id="morada" value="#{usuarioBean.usuario.morada}" />
+
+            <p:outputLabel for="dataEntrada" value="Data de Entrada" />
+            <p:calendar id="dataEntrada" value="#{usuarioBean.usuario.dataEntrada}" showOn="button"
+                pattern="dd/MM/yyyy" />
+
+            <p:outputLabel for="dataSaida" value="Data de Saída" />
+            <p:calendar id="dataSaida" value="#{usuarioBean.usuario.dataSaida}" showOn="button"
+                pattern="dd/MM/yyyy" />
+        </p:panelGrid>
+
+    <p:commandButton value="Cadastrar" action="#{usuarioBean.cadastrarUsuario}" update="messages"
+    oncomplete="PF('cadastroDialog').hide();" />
    
-   <h3>Galeria de Imagens</h3>
-    <p:panelGrid columns="3" layout="grid">
-        <p:graphicImage value="..." alt="Imagem 1" />
-        <p:graphicImage value="..." alt="Imagem 2" />
-        <p:graphicImage value="..." alt="Imagem 3" />
-        <p:graphicImage value="C:\Users\Remane\Music\.jpg" alt="Imagem 4" />
-        <p:graphicImage value="C:\Users\Remane\Music\.jpg" alt="Imagem 5" />
-        <p:graphicImage value="caminho/para/imagem6.jpg" alt="Imagem 6" />
-    </p:panelGrid>
+</h:form>
+</p:dialog>    
+        
+        <p:dialog header="Atualização de Usuário" widgetVar="excluirDialog" modal="true" resizable="false">
+    <h:form>
+        <p:messages id="messages" />
+
+        <p:panelGrid columns="2" columnClasses="labelColumn,inputColumn">
+            <p:outputLabel for="nome" value="Nome" />
+            <p:inputText id="nome" value="#{usuarioBean.usuario.nome}" />
+
+            <p:outputLabel for="idade" value="Idade" />
+            <p:inputText id="idade" value="#{usuarioBean.usuario.idade}" />
+
+            <p:outputLabel for="morada" value="Morada" />
+            <p:inputText id="morada" value="#{usuarioBean.usuario.morada}" />
+
+            <p:outputLabel for="dataEntrada" value="Data de Entrada" />
+            <p:calendar id="dataEntrada" value="#{usuarioBean.usuario.dataEntrada}" showOn="button"
+                pattern="dd/MM/yyyy" />
+
+            <p:outputLabel for="dataSaida" value="Data de Saída" />
+            <p:calendar id="dataSaida" value="#{usuarioBean.usuario.dataSaida}" showOn="button"
+                pattern="dd/MM/yyyy" />
+        </p:panelGrid>
+
+        <p:commandButton value="Atualizar" action="#{usuarioBean.atualizarUsuario}" update="messages"
+            oncomplete="PF('excluirDialog').hide();" />
+
+        
+    </h:form>
+</p:dialog>     
+       <div class="footer">
+            © 2023 Hotel Management. Todos os direitos reservados.
+        </div>
     </h:body>
 </html>
-
